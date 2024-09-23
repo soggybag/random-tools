@@ -15,7 +15,7 @@ const {
   randomBool, 
   dieX, 
   shuffle, 
-  pick 
+  pick
 } = require('../dist/bundle.umd')
 
 // ----------------------------------------------------
@@ -150,7 +150,19 @@ describe('#dieX', () => {
     const bonus = 3
     for (let i = 0; i < 1000; i += 1) {
       const n = d8()
-      
     }
+  })
+})
+
+describe('#pick', () => {
+  const nums = [1,2,3,4,5,6]
+  const letters = ['a','b','c','d','e']
+
+  test('pick', () => {
+    const pick_1 = pick(nums)
+    const pick_2 = pick(letters)
+
+    expect(nums.includes(pick_1)).toBe(true)
+    expect(letters.includes(pick_2)).toBe(true)
   })
 })

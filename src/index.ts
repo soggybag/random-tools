@@ -116,5 +116,3 @@ export {
   flip,
   pick
 }
-
-export default random
