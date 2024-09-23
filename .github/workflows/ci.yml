@@ -1,0 +1,47 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]  # Specify Node.js versions to test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'  # Caching npm dependencies
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run type-check
+        run: npm run type-check  # You need to add a "type-check" script in your package.json
+
+      - name: Run tests
+        run: npm test  # Make sure to have Jest configured to run tests with this command
+
+      - name: Build package with Rollup
+        run: npm run build  # Rollup build, make sure this is defined in your package.json
+
+      - name: Upload test coverage report
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage  # Adjust if needed, depending on where Jest outputs the coverage report
