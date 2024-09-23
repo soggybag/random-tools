@@ -1,0 +1,35 @@
+{
+  "name": "@soggybag/random-tools",
+  "version": "1.0.0",
+  "description": "Functions to generate random numbers",
+  "main": "dist/bundle.umd.js",
+  "module": "dist/bundle.esm.js",
+  "types": "dist/types/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/bundle.umd.js",
+      "import": "./dist/bundle.esm.js"
+    }
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "keywords": [
+    "js",
+    "random",
+    "numbers"
+  ],
+  "author": "Mitchell",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "jest": "^29.7.0",
+    "rollup": "^4.21.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.5.4"
+  }
+}

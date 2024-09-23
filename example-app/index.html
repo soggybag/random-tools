@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script src="../dist/bundle.umd.js"></script>
+  <script>
+    console.log(randomStuff)
+    const d20 = randomStuff.dieX(20)
+    console.log(d20(), d20(), d20())
+    const letters = ['A', 'B','C']
+    console.log(randomStuff.pick(letters), randomStuff.pick(letters), randomStuff.pick(letters))
+  </script>
+
+  <script type="module">
+    import random, {
+      randomRange,
+      randomBool,
+      randomArray,
+      shuffle,
+      dieX,
+      flipCoin,
+      flip,
+      pick 
+    } from '../dist/bundle.esm.js' 
+    console.log(
+      randomRange,
+      randomBool,
+      randomArray,
+      shuffle,
+      dieX,
+      flipCoin,
+      flip,
+      pick)
+
+    const RollD20 = dieX(20)
+    console.log(RollD20(), RollD20(), RollD20())
+    const chars = ['X', 'Y','Z']
+    console.log(pick(chars), pick(chars), pick(chars))
+    
+  </script>
+</body>
+</html>
