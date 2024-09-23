@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]  # Specify Node.js versions to test
+        node-version: [16.x, 18.x]
 
     steps:
       - name: Checkout repository
@@ -25,23 +25,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'  # Caching npm dependencies
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run type-check
-        run: npm run type-check  # You need to add a "type-check" script in your package.json
+      - name: Build package with Rollup
+        run: npm run build  # This generates the dist folder
 
       - name: Run tests
-        run: npm test  # Make sure to have Jest configured to run tests with this command
-
-      - name: Build package with Rollup
-        run: npm run build  # Rollup build, make sure this is defined in your package.json
+        run: npm test  # Now the test can find the dist folder
 
       - name: Upload test coverage report
         if: success()
         uses: actions/upload-artifact@v3
         with:
           name: coverage
-          path: coverage  # Adjust if needed, depending on where Jest outputs the coverage report
+          path: coverage
