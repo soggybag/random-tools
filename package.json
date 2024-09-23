@@ -15,7 +15,12 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "type-check": "tsc --noEmit"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage"
   },
   "keywords": [
     "js",
